@@ -1,0 +1,102 @@
+{% extends 'html/base.html' %}
+{% load static %}
+{% block title %} products {% endblock %}
+{% block content %}
+
+<style media="screen">
+a:link {
+  text-decoration: none;
+}
+h6 {
+  text-align: center;
+}
+.row {
+  margin: 100px;
+}
+.my-float{
+	margin-top:22px;
+}
+.panel-heading{
+  background-color: gray;
+}
+
+@media  /*for table*/
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+  /* Force table to not be like tables anymore */
+  table, thead, tbody, th, td, tr { 
+    display: block; 
+  }
+  
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  tr { border: 1px solid #ccc; }
+  
+  td { 
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee; 
+    position: relative;
+    padding-left: 50%; 
+  }
+  
+  td:before { 
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%; 
+    padding-right: 10px; 
+    white-space: nowrap;
+  }
+
+</style>
+
+<div class="container">
+  {% if messages %}
+  {% for m in messages %}
+    <div class="alert alert-{{m.tags}} alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>{{m}}</strong>
+    </div>
+  {% endfor %}
+  {% endif %}
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="panel-title text-center mt-4">Total Product List</h4>
+    </div>
+    <table class="table table-hover">
+      <thead class="panel-heading">
+        <tr>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      {% for p in pro %}
+      <tr>
+        <td>{{p.productname}}</td>
+        <td><img src="{{p.product_image.url}}" height="25px" width="25px" /></td>
+        <td>{{p.price}}</td>
+        <td>{{p.description}}</td>
+        <td>{{p.category}}</td>
+        <td><a class="btn btn-warning btn-xs" href="{% url 'update' p.id  %}">Update</a></td>
+        <td><a class="btn btn-danger btn-xs" href="{% url 'del' p.id  %}">Delete</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+    <a href="{% url 'addprodt' %}" class="btn btn-sm bg-success p-2" style="float: right">Add Product</a>
+  </div>
+</div>
+{% endblock %}

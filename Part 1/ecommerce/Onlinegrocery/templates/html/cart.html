@@ -1,0 +1,44 @@
+{% extends 'html/base.html' %}
+{% load static %}
+{% block title %} Cart {% endblock %}
+{% block content %}
+
+<div class="container">
+	<div class="card col-md mt-4 mx-auto shadow-lg">
+		<div class="bg-warning text-center mx-2 my-2 p-1 border rounded">
+			<h6 style="text-align:center;">My Cart</h6>
+		</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Image</th>
+					<th>Price</th>
+					<th>Description</th>
+					<th>Remove From Cart</th>
+				</tr>
+			</thead>
+			{% for k in products %}	
+			{% if k in products %}
+			<tr>
+				<td> {{k.productname}}</td>
+				<td> <img src="{{k.product_image.url}}" alt="Profile Pic" height="40px" width="40px" /></td>
+				<td>₹{{k.price}} (per.kg)</td>
+				<td>{{k.description}}</td>
+				<td><a class="btn btn-danger btn-xs" href="{% url 'remcrt' k.id  %}">Remove</a></td>
+			</tr>
+			{% else %}
+			<br><br><br>
+			<h1>No products</h1>
+			{% endif %}
+			{% endfor %}
+		</table>
+	</div>
+</div>
+<br><br><br>
+<div style="text-align: center;">
+	<button class="btn btn2">Total {{total}}</button>
+	<a href="{% url 'custaddrs' %}"><button class="btn btn-success" >Purchase</button></a>
+</div>
+<br><br>
+{% endblock %}

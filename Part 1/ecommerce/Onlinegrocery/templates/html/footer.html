@@ -1,0 +1,47 @@
+{% load static %}
+<footer class="footer-distributed">
+  
+<div class="footer-left">
+  
+    <img src="{% static 'images/logo.jpeg' %}" alt="image">
+        <h3><span> Online Grocery </span></h3>
+
+        <p class="footer-links">
+          <a href="{% url 'hom' %}">Home</a>
+          |
+          <a href="#">Blog</a>
+          |
+          <a href="{% url 'abot' %}">About</a>
+          |
+          <a href="{% url 'cont' %}">Contact</a>
+        </p>
+
+        <p class="footer-company-name">© 2020 Onlinegrocery Pvt. Ltd.</p>
+
+</div>
+       
+      <div  class="footer-center">
+
+        <div>
+          <i class="fa fa-map-marker"></i>
+            <p><span>309 - Rupa Nagar,
+             Bldg. No. A - 1, Sector - 1</span>
+            ,Rajahmundry - 533107</p>
+        </div>
+
+        <div>         
+              <i class="fa fa-phone"></i>
+              <p><a href="phoneto:+91-7780525226">+91-7780525226</a></p>
+        </div>
+        <div>
+          <i class="fa fa-envelope"></i>
+          <p><a href="mailto:support@creativewebdesign.com">support@onlinegrocery.com</a></p>
+        </div> 
+      </div>
+
+      <div class="footer-right">
+        <p class="footer-company-about">
+          <span>About the company</span>
+          We supply all types of home need grocery.</p>
+      
+    </footer>

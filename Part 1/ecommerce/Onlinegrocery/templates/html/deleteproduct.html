@@ -1,0 +1,15 @@
+{% extends 'html/base.html' %}
+{% block title %} Delete Products {% endblock %}
+{% block content %}
+<div class="container mt-5">
+	<div class="card col-md-6 mx-auto shadow-lg" style="background-color: #F2EFE4">
+		<h2 class=" card-body mx-1 mt-2 bg-danger text-white  text-center mx-2 mt-4 p-2 border rounded">Delete Product</h2>
+		<form method="POST" class="mx-4 my-2 mt-2">
+				{% csrf_token %}
+				<h4 class="text-center mt-2">Are you sure you want to remove the product from product catalogue ?</h4><br><br>
+				<input type="submit" class="btn btn-success" value="Conform"></input>
+				<a href="{% url 'prodt' %}" class="btn btn-primary mx-4 my-2 mt-2" style="float: right;">Cancle</a>
+		</form>
+	</div>
+</div>
+{% endblock %}

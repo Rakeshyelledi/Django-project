@@ -1,0 +1,62 @@
+{% extends 'html/base.html' %}
+{% load static %}
+{% block title %} Dashboard {% endblock %}
+{% block content %}
+
+<br>
+<h3 style="text-align:center;">Thank You For Your Order <strong> {{user.username}}</strong> !</h3> <br><br>
+<div class="container">
+	<header class="card-header" style="text-align:center;"> My Orders / Tracking </header>
+	{% for products,order in data %}
+	<article class="card">
+		<div class="card-body">
+			<ul class="row" style="margin-left:20px;margin-top:20px;">
+				<li class="col-md-4">
+					<figure class="itemside mb-3">
+						{% for p in pro %}
+						<div class="aside"><img src="{{p.product_image.url}}" height="25px" width="25px" /></div>
+						<figcaption class="info align-self-center">
+							<p class="title"><strong>Name : </strong>{{p.productname}} <br> <strong>Description : </strong>{{p.description}}</p> <span class="text-muted"><strong>Price : </strong>{{p.price}}</span>
+						</figcaption>
+					</figur>
+				</li>
+				<li class="col-md-4">
+					<div class="col"> <strong>Shipment Address:</strong> <br> {{order.address}}</div>
+				</li>
+				<li class="col-md-4">
+					<div class="col"> <strong>Status:</strong> <br> {{order.status}} </div> <br>
+					<h4><a style="text-decoration:none; color:blue;" href="#" >Download Invoice</a></h4>
+				</li>
+				{%endfor%}
+			</ul>
+			<hr>
+			<div class="track">
+				{%if order.status == 'Pending' %}
+				<div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-frown-o"></i> </span> <span class="text">Order Pending</span> </div>
+				<div class="step "> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-check"></i> </span> <span class="text"> Order Confirmed</span> </div>
+				<div class="step "> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+				<div class="step "> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-home"></i> </span> <span class="text">Delivered</span>
+				</div>
+                {%elif order.status == 'Order Confirmed' %}
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-frown-o"></i> </span> <span class="text">Order Pending</span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-check"></i> </span> <span class="text"> Order Confirmed</span> </div>
+                <div class="step "> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                <div class="step "> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-home"></i> </span> <span class="text">Delivered</span> </div>
+                {%elif order.status == 'Out for Delivery'%}
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-frown-o"></i> </span> <span class="text">Order Pending</span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-check"></i> </span> <span class="text"> Order Confirmed</span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                <div class="step "> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-home"></i> </span> <span class="text">Delivered</span> </div>
+                {%else%}
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-frown-o"></i> </span> <span class="text">Order Pending</span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-check"></i> </span> <span class="text"> Order Confirmed</span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-home"></i> </span> <span class="text">Delivered</span> </div>
+                {%endif%}
+            </div>
+        </div>
+    </article><br>
+{%endfor%}
+</div>
+<br><br><br><br><br>
+{% endblock %}

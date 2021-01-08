@@ -1,0 +1,33 @@
+{% extends 'html/base.html' %}
+{% load static %}
+{% block title %} Checkout {% endblock %}
+{% block content %}
+
+<div class="card col-md-6 mx-auto shadow-lg mt-4" style="border-radius: 20px;">
+	<div class="card-body mx-1 mt-2">
+		<h2 class="text-center text-wite border rounded mt-1" style="background-color: #66ffcf;">Checkout Form</h2>
+		<div class="modal-body">
+          <div class="m-2 p-3">
+            <form action="/check-out" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="">Email :</label>
+                    <input type="text" name="email" type="email" class="form-control" placeholder="Enter Your email" aria-describedby="helpId" required="True">
+                  </div>
+                <div class="form-group">
+                  <label for="">Address :</label>
+                  <input type="text" name="address" type="address" class="form-control" placeholder="Enter your address " aria-describedby="helpId" required="True">
+                  
+                </div>
+                <div class="form-group">
+                    <label for="">Mobile :</label>
+                    <input type="text" name="phone" type="number" class="form-control" placeholder="Enter your mobile number" aria-describedby="helpId" required="True">
+                  </div>
+
+                  <a href="{% url 'soon' %}"><button class="btn float-right btn-outline-info col-lg-6" >Purchase</button>
+            </form>
+          </div>
+        </div>
+	</div>
+</div>
+{% endblock %}

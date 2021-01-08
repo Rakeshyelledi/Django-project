@@ -1,0 +1,27 @@
+{% extends 'html/base.html' %}
+{% block title %} Register {% endblock %}
+{% block content %}
+<div class="container mt-3">
+  <div class="card col-md-6 mx-auto shadow-lg" style="border-radius: 20px;">
+  	<div class="card-body mx-1 mt-2">
+  		<h2 class="text-center text-wite border rounded" style="background-color: #66ffcf;">Registration Form</h2>
+  		<form method="POST">
+  			{% csrf_token %}
+  			<table class="table table-borderless">
+  				{% for i in b %}
+  				<tr>
+  					<td>{{i}}</td>
+  				</tr>
+  				{% endfor %}
+  			</table>
+  			<input type="submit" class="form-control text-wite btn btn-success" name="Register">
+  		</form>
+  	</div>
+  </div>
+</div>
+{% endblock %}
+
+<!-- Your password can’t be too similar to your other personal information.
+Your password must contain at least 8 characters.
+Your password can’t be a commonly used password.
+Your password can’t be entirely numeric. -->
